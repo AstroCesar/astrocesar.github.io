@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>César Muñoz González</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     CONFIGURACIÓN RÁPIDA — edita solo este bloque
+     para cambiar textos principales sin tocar nada más
+     ============================================================ -->
+<script>
+const CONFIG = {
+
+  /* ── Datos personales ── */
+  nombre:       "César Muñoz González",
+  nombreCorto:  "César Muñoz",
+  tagline:      "Animator with 35 peer-reviewed papers.",
+  subtitulo:    "3D Character Animator · Data Scientist",
+  ubicacion:    "Antofagasta, Chile · disponible para reubicación",
+  email:        "cesar.charactanim@gmail.com",
+  emailAstro:   "cesar.alejandro.munoz.g@gmail.com",
+
+  /* ── Links ── */
+  demoReel:     "https://vimeo.com/1046080580",
+  nasaADS:      "https://ui.adsabs.harvard.edu/public-libraries/0Xt44lMuSiG8o4RMMZ9i1A",
+
+  /* ── Video hero ──────────────────────────────────────────────
+     Opción A (recomendada): pon la ruta a tu archivo local
+       videoLocal: "reel.mp4"
+     Opción B: dejar vacío activa el fallback Vimeo automático
+     ──────────────────────────────────────────────────────────── */
+  videoLocal:   "",
+  vimeoId:      "1046080580",
+
+  /* ── Stats ── */
+  statPapers:    "35",
+  statCitas:     "+1.000",
+  statRecientes: "19",
+};
+</script>
+
+<style>
+:root {
+  --bg: #0b0c10;
+  --surface: #13151c;
+  --surface2: #1c1f2a;
+  --border: rgba(255,255,255,0.07);
+  --text: #e8e6df;
+  --muted: #7a7d8a;
+  --accent-anim: #7eb8a4;
+  --accent-astro: #c4a35a;
+  --accent-tech: #8a9ecf;
+  --anim-dim: rgba(126,184,164,0.12);
+  --astro-dim: rgba(196,163,90,0.12);
+  --tech-dim: rgba(138,158,207,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(1px 1px at 15% 20%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 72% 8%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 38% 55%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 85% 42%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 6% 65%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 91% 72%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 60% 15%,rgba(255,255,255,0.6) 0%,transparent 100%),radial-gradient(1px 1px at 29% 35%,rgba(255,255,255,0.25) 0%,transparent 100%);pointer-events:none;z-index:0;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(11,12,16,0.85);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);}
+.nav-name{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--text);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+
+/* HERO */
+#hero{position:relative;height:100vh;min-height:500px;overflow:hidden;z-index:1;}
+#hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.5;display:none;}
+#hero-iframe-wrap{position:absolute;inset:-10%;width:120%;height:120%;pointer-events:none;display:none;}
+#hero-iframe-wrap iframe{width:100%;height:100%;opacity:0.45;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,12,16,1) 0%,rgba(11,12,16,0.5) 40%,rgba(11,12,16,0.15) 100%);z-index:2;}
+.hero-content{position:absolute;bottom:0;left:0;right:0;z-index:3;max-width:900px;margin:0 auto;padding:0 2rem 3rem;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.4);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.5rem;}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:400;line-height:1.05;color:#fff;margin-bottom:0.4rem;}
+.hero-sub{font-size:0.88rem;color:rgba(255,255,255,0.5);letter-spacing:0.03em;}
+.hero-reel-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;border:0.5px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);font-size:0.8rem;text-decoration:none;white-space:nowrap;transition:all 0.2s;backdrop-filter:blur(4px);}
+.hero-reel-btn:hover{background:rgba(255,255,255,0.15);color:#fff;}
+.play-icon{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;}
+
+/* SECCIONES */
+section{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:5rem 2rem 3rem;}
+.section-header{display:flex;align-items:center;gap:1rem;margin-bottom:2.5rem;}
+.section-label{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;white-space:nowrap;}
+.label-anim{color:var(--accent-anim);}
+.label-astro{color:var(--accent-astro);}
+.label-tech{color:var(--accent-tech);}
+.section-line{flex:1;height:0.5px;background:var(--border);}
+h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;line-height:1.1;margin-bottom:0.8rem;}
+.section-intro{color:var(--muted);font-size:0.9rem;max-width:520px;margin-bottom:2.5rem;line-height:1.65;}
+.sub-label{font-family:'DM Mono',monospace;font-size:0.67rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin:2rem 0 0.8rem;}
+
+/* CARDS */
+.card-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.5rem;}
+.card{background:var(--surface);padding:1.3rem 1.5rem;transition:background 0.15s;}
+.card:hover{background:var(--surface2);}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;}
+.card-title{font-size:0.93rem;font-weight:500;color:var(--text);line-height:1.4;}
+.card-meta{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--muted);white-space:nowrap;padding-top:2px;}
+.card-desc{font-size:0.82rem;color:var(--muted);margin-top:4px;line-height:1.55;}
+
+/* CRÉDITOS */
+.credit{background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:1.4rem 1.6rem;margin-bottom:8px;display:grid;grid-template-columns:1fr auto;gap:4px;transition:background 0.15s;}
+.credit:hover{background:var(--surface2);}
+.credit-title{font-size:0.98rem;font-weight:500;color:var(--text);}
+.credit-role{font-size:0.82rem;color:var(--accent-anim);margin:2px 0 4px;}
+.credit-note{font-size:0.78rem;color:var(--muted);line-height:1.5;}
+.credit-year{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--muted);text-align:right;padding-top:2px;}
+.credit-badge{display:inline-block;font-size:0.7rem;padding:2px 9px;border-radius:4px;background:var(--anim-dim);color:var(--accent-anim);border:0.5px solid rgba(126,184,164,0.2);margin-top:7px;}
+
+/* VIDEO */
+.video-wrap{border-radius:10px;overflow:hidden;position:relative;padding-bottom:56.25%;margin:0.5rem 0 1.5rem;max-width:640px;background:#000;}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2.5rem;}
+.stat{background:var(--surface);padding:1.4rem;text-align:center;}
+.stat-num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--accent-astro);display:block;line-height:1;margin-bottom:4px;}
+.stat-lbl{font-size:0.73rem;color:var(--muted);}
+
+/* TAGS */
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.5rem;}
+.tag{font-family:'DM Mono',monospace;font-size:0.72rem;padding:5px 10px;border-radius:6px;background:var(--surface);border:0.5px solid var(--border);color:var(--muted);}
+
+/* GRIDS */
+.two-col{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:1.5rem;}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:1.5rem;}
+.grid-item{background:var(--surface);border:0.5px solid var(--border);border-radius:8px;padding:0.85rem 1rem;font-size:0.82rem;color:var(--muted);display:flex;align-items:center;gap:8px;transition:all 0.15s;}
+.grid-item:hover{background:var(--surface2);color:var(--text);}
+.grid-dot{width:5px;height:5px;border-radius:50%;background:var(--accent-astro);flex-shrink:0;}
+
+/* PROYECTOS */
+.project{background:var(--surface);border:0.5px solid var(--border);border-left:2px solid var(--accent-tech);border-radius:0 8px 8px 0;padding:1rem 1.2rem;margin-bottom:8px;transition:background 0.15s;}
+.project:hover{background:var(--surface2);}
+.project-title{font-size:0.9rem;font-weight:500;color:var(--text);margin-bottom:3px;}
+.project-desc{font-size:0.8rem;color:var(--muted);line-height:1.55;}
+
+/* LINKS y NOTAS */
+.ext-link{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--accent-astro);text-decoration:none;border:0.5px solid rgba(196,163,90,0.3);padding:6px 14px;border-radius:6px;transition:all 0.2s;margin-top:0.5rem;}
+.ext-link:hover{background:var(--astro-dim);}
+.note{background:var(--surface);border:0.5px solid rgba(126,184,164,0.2);border-radius:10px;padding:1.2rem 1.4rem;font-size:0.82rem;color:var(--muted);line-height:1.65;margin-bottom:8px;}
+.note strong{color:var(--accent-anim);font-weight:500;}
+.note.astro-note{border-color:rgba(196,163,90,0.15);}
+.note.astro-note strong{color:var(--accent-astro);}
+.jbadge{display:inline-block;font-family:'DM Mono',monospace;font-size:0.63rem;padding:2px 7px;border-radius:4px;background:var(--astro-dim);color:var(--accent-astro);border:0.5px solid rgba(196,163,90,0.2);margin-left:8px;vertical-align:middle;}
+.jbadge.prep{background:rgba(255,255,255,0.04);color:var(--muted);border-color:var(--border);}
+
+/* CONTACTO */
+#contacto{border-top:0.5px solid var(--border);text-align:center;padding:5rem 2rem 6rem;}
+.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:2rem;}
+.contact-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:8px;font-size:0.82rem;text-decoration:none;transition:all 0.2s;border:0.5px solid var(--border);color:var(--muted);background:var(--surface);}
+.contact-btn:hover{background:var(--surface2);color:var(--text);}
+.contact-btn.primary{background:var(--anim-dim);border-color:rgba(126,184,164,0.3);color:var(--accent-anim);}
+.contact-btn.primary:hover{background:rgba(126,184,164,0.2);}
+
+/* ANIMACIONES */
+.fade-in{opacity:0;transform:translateY(14px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+
+footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);border-top:0.5px solid var(--border);position:relative;z-index:1;}
+
+@media(max-width:600px){
+  nav{padding:1rem 1.2rem;}
+  .nav-links{gap:1rem;}
+  section{padding:4rem 1.2rem 2.5rem;}
+  .stats{grid-template-columns:1fr;}
+  .two-col{grid-template-columns:1fr;}
+  .three-col{grid-template-columns:repeat(2,1fr);}
+  .hero-content{flex-direction:column;align-items:flex-start;gap:1rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────────────────── -->
+<nav>
+  <span class="nav-name" id="nav-nombre"></span>
+  <ul class="nav-links">
+    <li><a href="#animacion">Animación</a></li>
+    <li><a href="#data">Data & Ciencia</a></li>
+    <li><a href="#tecnologia">Tecnología</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO — video de fondo, nombre abajo (opción C) ───────
+     Para activar tu .mp4: cambia CONFIG.videoLocal arriba     -->
+<div id="hero">
+  <video id="hero-video" autoplay muted loop playsinline></video>
+  <div id="hero-iframe-wrap">
+    <iframe id="hero-iframe" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">// portfolio personal</div>
+      <h1 id="hero-nombre"></h1>
+      <div class="hero-sub" id="hero-tagline"></div>
+    </div>
+    <a id="hero-reel-btn" class="hero-reel-btn" target="_blank">
+      <div class="play-icon">
+        <svg width="10" height="12" viewBox="0 0 10 12"><polygon points="0,0 10,6 0,12" fill="rgba(255,255,255,0.9)"/></svg>
+      </div>
+      Ver demo reel
+    </a>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECCIÓN 1 — ANIMACIÓN
+     Agregar crédito: copia un bloque <div class="credit"> y edita
+     ============================================================ -->
+<section id="animacion">
+<div class="fade-in">
+  <div class="section-header">
+    <span class="section-label label-anim">Animación 3D</span>
+    <div class="section-line"></div>
+  </div>
+  <h2>Producción<br><em style="color:var(--muted)">internacional</em></h2>
+  <p class="section-intro">
+    Animador 3D de personajes con casi 4 años de experiencia profesional y créditos en producciones para PunkRobot, Disney/Lucasfilm y Nickelodeon. Formación en Animation Mentor y Animus.
+  </p>
+
+  <div class="sub-label">Créditos</div>
+
+  <!-- ── Agregar / editar créditos aquí ── -->
+
+  <div class="credit" style="border-color:rgba(126,184,164,0.28);">
+    <div>
+      <div class="credit-title">Brave Cat</div>
+      <div class="credit-role">Animador 3D de personajes</div>
+      <div class="credit-note">Primer largometraje de PunkRobot Studio, el estudio chileno ganador del Oscar por Bear Story (2015). Dirigida por Gabriel Osorio. Distribución internacional vía Indie Sales.</div>
+      <span class="credit-badge">PunkRobot Studio · 2025–2026</span>
+    </div>
+    <div class="credit-year">2026</div>
+  </div>
+
+  <!-- Trailer oficial -->
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/VsYiM9Fcn1U"
+      title="Brave Cat — Official Trailer"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+
+  <div class="credit">
+    <div>
+      <div class="credit-title">Mia & Codie</div>
+      <div class="credit-role">Animador 3D de personajes</div>
+      <div class="credit-note">Serie de TV. Producción en Pajaro Studio / Relish Studios.</div>
+      <span class="credit-badge">Pajaro Studio · Relish Studios</span>
+    </div>
+    <div class="credit-year">2024</div>
+  </div>
+
+  <div class="credit">
+    <div>
+      <div class="credit-title">Super Bowl LVIII — SpongeBob</div>
+      <div class="credit-role">Animador 3D de personajes</div>
+      <div class="credit-note">Animación cartoon frame a frame de personajes de SpongeBob SquarePants. Layout, blocking y polishing.</div>
+      <span class="credit-badge">Baros Studio · Nickelodeon</span>
+    </div>
+    <div class="credit-year">2023–2024</div>
+  </div>
+
+  <div class="credit">
+    <div>
+      <div class="credit-title">Star Wars: Visions Vol. 2 — "In the Stars"</div>
+      <div class="credit-role">Animador 3D de personajes</div>
+      <div class="credit-note">Cortometraje de PunkRobot para Disney/Lucasfilm. Ganador del premio Best Commissioned Animation en los Quirino Awards. Estilos 24fps y 12fps stop-motion.</div>
+      <span class="credit-badge">PunkRobot · Disney/Lucasfilm</span>
+    </div>
+    <div class="credit-year">2022–2023</div>
+  </div>
+
+  <div class="credit">
+    <div>
+      <div class="credit-title">WOW Lisa + Guitar and Drum</div>
+      <div class="credit-role">Animador 3D de personajes</div>
+      <div class="credit-note">Dos series de TV en PunkRobot. WOW Lisa ganadora del premio Annie.</div>
+      <span class="credit-badge">PunkRobot · Premio Annie</span>
+    </div>
+    <div class="credit-year">2022–2023</div>
+  </div>
+
+  <div class="credit">
+    <div>
+      <div class="credit-title">Proyectos freelance</div>
+      <div class="credit-role">Animador 3D</div>
+      <div class="credit-note">Trabajos para Believe Studios (believe.tv) y Gecko Studio (geckoanimacion.com).</div>
+      <span class="credit-badge">Freelance</span>
+    </div>
+    <div class="credit-year">—</div>
+  </div>
+
+  <div class="sub-label">Formación</div>
+  <div class="two-col">
+    <div class="grid-item" style="flex-direction:column;align-items:flex-start;gap:4px;">
+      <strong style="color:var(--text);font-size:0.88rem;">Animation Mentor</strong>
+      <span style="font-size:0.75rem;">Advanced Character Animation Program · 2020–2022</span>
+    </div>
+    <div class="grid-item" style="flex-direction:column;align-items:flex-start;gap:4px;">
+      <strong style="color:var(--text);font-size:0.88rem;">Animum 3D</strong>
+      <span style="font-size:0.75rem;">Animation & Modeling Workshop · Maya · 2019</span>
+    </div>
+  </div>
+
+  <div class="sub-label">Herramientas</div>
+  <div class="three-col">
+    <div class="grid-item">Autodesk Maya</div>
+    <div class="grid-item">AnimBot</div>
+    <div class="grid-item">Studio Library</div>
+    <div class="grid-item">MG-Picker</div>
+    <div class="grid-item">ShotGrid</div>
+    <div class="grid-item">Ftrack · Kitsu</div>
+    <div class="grid-item">PRISM Pipeline</div>
+    <div class="grid-item">Marvelous Designer</div>
+    <div class="grid-item">nHair</div>
+  </div>
+
+  <!-- ── Scripts propios — reemplaza cuando tengas el repo ── -->
+  <div class="sub-label">Scripts propios</div>
+  <div class="note">
+    <strong>En desarrollo.</strong> Repositorio de scripts para Maya orientados a pipeline de producción.
+    Próximamente en GitHub.
+    <!-- Cuando tengas el repo, reemplaza por:
+    Scripts para Maya. <a href="https://github.com/TU_USUARIO/TU_REPO" target="_blank" style="color:var(--accent-anim);">Ver en GitHub →</a>
+    -->
+  </div>
+
+  <div class="note astro-note" style="margin-top:8px;">
+    <strong>Lo que me diferencia.</strong>
+    Puedo simular dinámica de telas y cabello con fundamento matemático real. La física detrás de una simulación en Maya y la física detrás de una estrella son, en el fondo, las mismas ecuaciones.
+  </div>
+</div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN 2 — DATA & CIENCIA
+     Agregar publicación: copia un bloque <div class="card"> y edita
+     ============================================================ -->
+<section id="data">
+<div class="fade-in">
+  <div class="section-header">
+    <span class="section-label label-astro">Data & Ciencia</span>
+    <div class="section-line"></div>
+  </div>
+  <h2>Large-scale<br><em style="color:var(--muted)">data analysis</em></h2>
+  <p class="section-intro">
+    Trabajo con datasets de millones de estrellas provenientes de surveys internacionales — APOGEE, Gaia, Rubin — diseñando pipelines de reducción, análisis estadístico y visualización a gran escala. El dominio es astrofísica, pero las herramientas son las mismas que en cualquier problema de datos complejos.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num" id="stat-papers"></span>
+      <span class="stat-lbl">publicaciones peer-reviewed</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" id="stat-citas"></span>
+      <span class="stat-lbl">citas académicas</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num" id="stat-recientes"></span>
+      <span class="stat-lbl">papers 2021–2026</span>
+    </div>
+  </div>
+
+  <div class="sub-label">Publicaciones destacadas</div>
+  <div class="card-list">
+    <!-- ── Agregar / editar publicaciones aquí ── -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Chemical abundances in Magellanic Cloud periphery substructures<span class="jbadge">A&A 2023</span></div>
+        <div class="card-meta">Muñoz et al.</div>
+      </div>
+      <div class="card-desc">Primer análisis químico de subestructuras periféricas de las Nubes de Magallanes con APOGEE-2S.</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Kinematics of Magellanic Cloud substructures<span class="jbadge">ApJ 2022</span></div>
+        <div class="card-meta">Cheng et al.</div>
+      </div>
+      <div class="card-desc">Estudio cinemático complementario. Co-autoría con Prof. Gurtina Besla (U. Arizona).</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Caracterización química de NGC 6791<span class="jbadge prep">en prep.</span></div>
+        <div class="card-meta">Muñoz et al.</div>
+      </div>
+      <div class="card-desc">Manuscrito en preparación.</div>
+    </div>
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Extensión del survey CAPOS<span class="jbadge prep">en prep.</span></div>
+        <div class="card-meta">Muñoz et al.</div>
+      </div>
+      <div class="card-desc">Manuscrito en preparación.</div>
+    </div>
+  </div>
+
+  <a class="ext-link" id="ads-link" target="_blank">→ Lista completa en NASA/ADS</a>
+
+  <div class="sub-label">Áreas</div>
+  <div class="two-col">
+    <div class="grid-item"><div class="grid-dot"></div>Arqueología galáctica</div>
+    <div class="grid-item"><div class="grid-dot"></div>Evolución química estelar</div>
+    <div class="grid-item"><div class="grid-dot"></div>Cúmulos globulares del bulbo</div>
+    <div class="grid-item"><div class="grid-dot"></div>Nubes de Magallanes</div>
+    <div class="grid-item"><div class="grid-dot"></div>Espectroscopía alta resolución</div>
+    <div class="grid-item"><div class="grid-dot"></div>CAPOS · APOGEE-2S</div>
+  </div>
+
+  <div class="sub-label">Instrumentación</div>
+  <div class="tags">
+    <span class="tag">VLT/FLAMES UVES</span>
+    <span class="tag">VLT/FLAMES Giraffe</span>
+    <span class="tag">Magellan/MIKE</span>
+    <span class="tag">Gemini-S/GSAOI</span>
+    <span class="tag">MOOG / BACCHUS</span>
+    <span class="tag">Gaia</span>
+    <span class="tag">Rubin Observatory</span>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================
+     SECCIÓN 3 — TECNOLOGÍA
+     Agregar proyecto: copia un bloque <div class="project"> y edita
+     ============================================================ -->
+<section id="tecnologia">
+<div class="fade-in">
+  <div class="section-header">
+    <span class="section-label label-tech">Tecnología</span>
+    <div class="section-line"></div>
+  </div>
+  <h2>Datos &<br><em style="color:var(--muted)">código</em></h2>
+  <p class="section-intro">
+    Python para análisis de grandes datasets, automatización de pipelines y visualización científica. Aplicable a análisis cuantitativo en industria, minería de datos y producción.
+  </p>
+
+  <div class="sub-label">Proyectos</div>
+  <!-- ── Agregar proyectos aquí ── -->
+  <div class="project">
+    <div class="project-title">Pipelines espectroscópicos</div>
+    <div class="project-desc">Reducción y análisis automatizado de datos de VLT/FLAMES y Magellan/MIKE. Integración con MOOG y BACCHUS para abundancias químicas estelares.</div>
+  </div>
+  <div class="project">
+    <div class="project-title">Determinación de membresía estelar</div>
+    <div class="project-desc">Clasificación de miembros de cúmulos con datos de Gaia y surveys ground-based. Combinación de cinemática y química para selección robusta.</div>
+  </div>
+  <div class="project">
+    <div class="project-title">Repositorio de herramientas · en desarrollo</div>
+    <div class="project-desc">Scripts públicos para la comunidad: reducción de datos espectroscópicos, visualización y análisis estadístico.</div>
+  </div>
+
+  <div class="sub-label">Stack</div>
+  <div class="tags">
+    <span class="tag">Python</span>
+    <span class="tag">NumPy · Pandas</span>
+    <span class="tag">Astropy</span>
+    <span class="tag">Matplotlib · Seaborn</span>
+    <span class="tag">Shell scripts</span>
+    <span class="tag">LaTeX</span>
+    <span class="tag">Git</span>
+    <span class="tag">Linux · Mac · Windows</span>
+  </div>
+
+  <div class="sub-label">Docencia</div>
+  <div class="tags">
+    <span class="tag">Taller de Investigación I — Doctorado UdeLS 2021–2025</span>
+    <span class="tag">Workshop de Astronomía — divulgación regional</span>
+    <span class="tag">Colegio San Nicolás 2016–2017</span>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================
+     CONTACTO
+     ============================================================ -->
+<section id="contacto">
+<div class="fade-in">
+  <div class="hero-eyebrow" style="text-align:center;margin-bottom:0.8rem;">// trabajemos juntos</div>
+  <h2 style="text-align:center;font-size:clamp(1.8rem,4vw,3rem);">¿Hablamos?</h2>
+  <p style="color:var(--muted);font-size:0.9rem;text-align:center;margin-top:0.5rem;">
+    Abierto a producciones de animación, posiciones académicas y proyectos de datos.
+  </p>
+  <div class="contact-links">
+    <a id="contact-email-anim" class="contact-btn primary" href="#">✉ Animación</a>
+    <a id="contact-email-astro" class="contact-btn" href="#">✉ Data & Ciencia</a>
+    <a id="contact-reel" class="contact-btn" href="#" target="_blank">▶ Demo Reel</a>
+    <a id="contact-ads" class="contact-btn" href="#" target="_blank">→ NASA/ADS</a>
+  </div>
+</div>
+</section>
+
+<footer>César Muñoz González · 2026</footer>
+
+<!-- ── SCRIPT: inyecta CONFIG, activa video, fade-in ────────── -->
+<script>
+document.getElementById('nav-nombre').textContent     = CONFIG.nombreCorto;
+document.getElementById('hero-nombre').textContent    = CONFIG.nombre;
+document.getElementById('hero-tagline').textContent   = CONFIG.subtitulo;
+document.getElementById('stat-papers').textContent    = CONFIG.statPapers;
+document.getElementById('stat-citas').textContent     = CONFIG.statCitas;
+document.getElementById('stat-recientes').textContent = CONFIG.statRecientes;
+document.getElementById('ads-link').href              = CONFIG.nasaADS;
+document.getElementById('hero-reel-btn').href         = CONFIG.demoReel;
+document.getElementById('contact-email-anim').href    = 'mailto:' + CONFIG.email;
+document.getElementById('contact-email-astro').href   = 'mailto:' + CONFIG.emailAstro;
+document.getElementById('contact-reel').href          = CONFIG.demoReel;
+document.getElementById('contact-ads').href           = CONFIG.nasaADS;
+
+/* Hero video: .mp4 local o fallback Vimeo */
+const vid  = document.getElementById('hero-video');
+const wrap = document.getElementById('hero-iframe-wrap');
+if (CONFIG.videoLocal) {
+  vid.src = CONFIG.videoLocal;
+  vid.style.display = 'block';
+  wrap.style.display = 'none';
+} else {
+  vid.style.display = 'none';
+  wrap.style.display = 'block';
+  document.getElementById('hero-iframe').src =
+    'https://player.vimeo.com/video/' + CONFIG.vimeoId +
+    '?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1';
+}
+
+/* Fade in scroll */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
