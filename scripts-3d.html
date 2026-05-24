@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maya Pipeline Scripts — César Muñoz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0c10;
+  --surface: #13151c;
+  --surface2: #1c1f2a;
+  --border: rgba(255,255,255,0.07);
+  --text: #e8e6df;
+  --muted: #7a7d8a;
+  --accent-anim: #7eb8a4;
+  --accent-astro: #c4a35a;
+  --accent-tech: #8a9ecf;
+  --anim-dim: rgba(126,184,164,0.12);
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 72% 8%,  rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 38% 55%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 42%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 6%  65%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 60% 15%, rgba(255,255,255,0.6) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* NAV — igual que index */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(11,12,16,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-name { font-family: 'DM Serif Display', serif; font-size: 1rem; color: var(--text); text-decoration: none; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+.nav-back { display: flex; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+.nav-back:hover { color: var(--accent-anim); }
+
+/* HERO pequeño */
+.page-hero {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 9rem 2rem 3rem;
+}
+.hero-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  margin-bottom: 0.6rem;
+}
+.page-intro {
+  color: var(--muted);
+  font-size: 0.9rem;
+  max-width: 520px;
+  line-height: 1.65;
+  margin-top: 0.4rem;
+}
+.gh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1.4rem;
+  padding: 9px 18px;
+  border-radius: 8px;
+  border: 0.5px solid rgba(126,184,164,0.3);
+  background: var(--anim-dim);
+  color: var(--accent-anim);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.gh-btn:hover { background: rgba(126,184,164,0.2); }
+
+/* CONTENIDO */
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+}
+
+.sub-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.67rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 2.5rem 0 0.9rem;
+}
+
+/* Script card */
+.script-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-left: 2px solid var(--accent-anim);
+  border-radius: 0 10px 10px 0;
+  padding: 1.3rem 1.5rem;
+  margin-bottom: 8px;
+  transition: background 0.15s;
+}
+.script-card:hover { background: var(--surface2); }
+.script-card.wip {
+  border-left-color: rgba(122,125,138,0.4);
+  opacity: 0.65;
+}
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.badges { display: flex; gap: 5px; flex-wrap: wrap; }
+.badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--anim-dim);
+  color: var(--accent-anim);
+  border: 0.5px solid rgba(126,184,164,0.2);
+  white-space: nowrap;
+}
+.badge.ready {
+  background: rgba(126,184,164,0.18);
+  color: var(--accent-anim);
+}
+.badge.wip {
+  background: rgba(255,255,255,0.04);
+  color: var(--muted);
+  border-color: var(--border);
+}
+.card-desc {
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+.feature {
+  font-size: 0.72rem;
+  color: rgba(126,184,164,0.7);
+  background: rgba(126,184,184,0.06);
+  border: 0.5px solid rgba(126,184,164,0.12);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: 'DM Mono', monospace;
+}
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--accent-anim);
+  text-decoration: none;
+  border: 0.5px solid rgba(126,184,164,0.25);
+  padding: 4px 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+.card-link:hover { background: var(--anim-dim); }
+
+/* Divider */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0 0.5rem;
+}
+.section-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-anim);
+  white-space: nowrap;
+}
+.section-line { flex: 1; height: 0.5px; background: var(--border); }
+
+/* Note */
+.note {
+  background: var(--surface);
+  border: 0.5px solid rgba(126,184,164,0.15);
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-top: 1.5rem;
+}
+.note strong { color: var(--accent-anim); font-weight: 500; }
+
+/* fade in */
+.fade-in { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+  border-top: 0.5px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 600px) {
+  nav { padding: 1rem 1.2rem; }
+  .nav-links { display: none; }
+  .page-hero { padding: 7rem 1.2rem 2rem; }
+  main { padding: 0 1.2rem 4rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">César Muñoz</a>
+  <ul class="nav-links">
+    <li><a href="index.html#animacion">Animación</a></li>
+    <li><a href="index.html#data">Data & Ciencia</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero fade-in">
+  <div class="hero-eyebrow">// animación · pipeline · tools</div>
+  <h1>Maya Pipeline<br><em style="color:var(--muted)">Scripts</em></h1>
+  <p class="page-intro">
+    Herramientas de Python para Maya desarrolladas durante producción real de animación 3D.
+    Cada script resuelve un problema concreto de pipeline.
+  </p>
+  <a class="gh-btn" href="https://github.com/AstroCesar/creative-tools" target="_blank">
+    → Ver repositorio en GitHub
+  </a>
+</div>
+
+<main>
+
+  <!-- LISTOS -->
+  <div class="section-header fade-in">
+    <span class="section-label">Disponibles</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="script-card fade-in">
+    <div class="card-top">
+      <div class="card-title">Playblast Stamper Pro</div>
+      <div class="badges">
+        <span class="badge ready">v1.1 · listo</span>
+        <span class="badge">Python · Maya 2024+</span>
+      </div>
+    </div>
+    <div class="card-desc">
+      Genera playblasts .mp4 con barra inferior quemada en el video: frame counter, nombre del shot, cámara activa y fecha. Audio del timeline incluido automáticamente — mismo flujo que el playblast nativo de Maya.
+    </div>
+    <div class="feature-list">
+      <span class="feature">stamp frame + shot + cámara + fecha</span>
+      <span class="feature">audio automático</span>
+      <span class="feature">modo solo polígonos</span>
+      <span class="feature">toggle joints · locators · grid</span>
+      <span class="feature">output .mp4 H.264</span>
+    </div>
+    <a class="card-link" href="https://github.com/AstroCesar/creative-tools/blob/main/playblast-stamper/playblast_stamper.py" target="_blank">→ Ver código</a>
+  </div>
+
+  <!-- EN DESARROLLO -->
+  <div class="section-header fade-in" style="margin-top:2.5rem;">
+    <span class="section-label" style="color:var(--muted);">En desarrollo</span>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="script-card wip fade-in">
+    <div class="card-top">
+      <div class="card-title">Scene Health Checker</div>
+      <div class="badges"><span class="badge wip">próximo</span></div>
+    </div>
+    <div class="card-desc">
+      Ventana con checks automáticos: shaders sin asignar, luces no conectadas al render set, texturas con rutas rotas, visibility keyframes incorrectos y namespaces huérfanos.
+    </div>
+  </div>
+
+  <div class="script-card wip fade-in">
+    <div class="card-top">
+      <div class="card-title">Video Reference Loader + Speed Control</div>
+      <div class="badges"><span class="badge wip">próximo</span></div>
+    </div>
+    <div class="card-desc">
+      Carga video o imágenes como referencia en cámara y permite ajustar la velocidad con curvas animables directamente en el Graph Editor de Maya.
+    </div>
+  </div>
+
+  <div class="script-card wip fade-in">
+    <div class="card-top">
+      <div class="card-title">Batch Material Assigner</div>
+      <div class="badges"><span class="badge wip">próximo</span></div>
+    </div>
+    <div class="card-desc">
+      Asigna shaders a múltiples meshes de rigs referenciados con soporte completo de namespaces. Solución al problema de ShapeDeformed en personajes referenciados.
+    </div>
+  </div>
+
+  <div class="script-card wip fade-in">
+    <div class="card-top">
+      <div class="card-title">Maya → Unreal Engine FBX Exporter</div>
+      <div class="badges"><span class="badge wip">próximo</span></div>
+    </div>
+    <div class="card-desc">
+      Exporta personajes animados a UE5 con configuración automatizada: escala, ejes, bake de constraints y strip de namespaces.
+    </div>
+  </div>
+
+  <div class="script-card wip fade-in">
+    <div class="card-top">
+      <div class="card-title">Animation Curve Cleaner</div>
+      <div class="badges"><span class="badge wip">próximo</span></div>
+    </div>
+    <div class="card-desc">
+      Detecta keyframes redundantes, tangentes rotas y plateau curves mal configuradas. Optimiza las curvas de animación en batch.
+    </div>
+  </div>
+
+  <div class="script-card wip fade-in">
+    <div class="card-top">
+      <div class="card-title">Playblast Multi-Camera Exporter</div>
+      <div class="badges"><span class="badge wip">próximo</span></div>
+    </div>
+    <div class="card-desc">
+      Exporta un playblast por cada cámara de la escena en un solo click, con naming convention configurable.
+    </div>
+  </div>
+
+  <div class="note fade-in">
+    <strong>Producción real.</strong> Todos los scripts nacen de problemas concretos encontrados
+    trabajando en Maya con personajes referenciados, Arnold y pipelines de estudio.
+    El código está comentado y pensado para ser adaptado a cualquier producción.
+  </div>
+
+</main>
+
+<footer>César Muñoz González · Maya Pipeline Tools · 2026</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>

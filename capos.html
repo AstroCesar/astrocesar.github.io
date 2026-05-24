@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAPOS Survey — César Muñoz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0c10;--surface:#13151c;--surface2:#1c1f2a;--border:rgba(255,255,255,0.07);--text:#e8e6df;--muted:#7a7d8a;--accent-astro:#c4a35a;--astro-dim:rgba(196,163,90,0.12);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(1px 1px at 15% 20%,rgba(255,255,255,0.5) 0%,transparent 100%),radial-gradient(1px 1px at 72% 8%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 38% 55%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1px 1px at 85% 42%,rgba(255,255,255,0.4) 0%,transparent 100%),radial-gradient(1px 1px at 6% 65%,rgba(255,255,255,0.3) 0%,transparent 100%),radial-gradient(1.5px 1.5px at 60% 15%,rgba(255,255,255,0.6) 0%,transparent 100%),radial-gradient(1px 1px at 29% 35%,rgba(255,255,255,0.25) 0%,transparent 100%);pointer-events:none;z-index:0;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3rem;background:rgba(11,12,16,0.85);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);}
+.nav-name{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--text);text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.page-hero{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:9rem 2rem 3rem;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:0.68rem;color:rgba(255,255,255,0.35);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.6rem;}
+h1{font-family:'DM Serif Display',serif;font-size:clamp(2.2rem,5vw,4rem);font-weight:400;line-height:1.05;margin-bottom:0.8rem;}
+.hero-logo{height:250px;opacity:1;display:block;}
+.page-intro{color:var(--muted);font-size:0.95rem;max-width:620px;line-height:1.75;margin-top:0.4rem;}
+.paper-btn{display:inline-flex;align-items:center;gap:8px;margin-top:1.6rem;padding:9px 18px;border-radius:8px;border:0.5px solid rgba(196,163,90,0.3);background:var(--astro-dim);color:var(--accent-astro);font-size:0.8rem;text-decoration:none;transition:all 0.2s;}
+.paper-btn:hover{background:rgba(196,163,90,0.2);}
+.stats-wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 2rem;}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:3rem;}
+.stat{background:var(--surface);padding:1.4rem;text-align:center;}
+.stat-num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--accent-astro);display:block;line-height:1;margin-bottom:4px;}
+.stat-lbl{font-size:0.72rem;color:var(--muted);}
+main{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 2rem 6rem;}
+.section-header{display:flex;align-items:center;gap:1rem;margin:4rem 0 1.5rem;}
+.section-label{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent-astro);white-space:nowrap;}
+.section-line{flex:1;height:0.5px;background:var(--border);}
+h2{font-family:'DM Serif Display',serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weight:400;line-height:1.1;margin-bottom:0.8rem;color:var(--text);}
+.body-text{font-size:0.9rem;color:var(--muted);line-height:1.8;max-width:680px;margin-bottom:1.2rem;}
+
+/* ── FIGURAS ──
+   Para agregar una figura:
+   1. Sube el archivo de imagen a GitHub
+   2. Copia este bloque y cambia el src y el texto del caption
+
+   <div class="fig-wrap">
+     <img src="NOMBRE_ARCHIVO.png" alt="Descripción">
+     <div class="fig-caption">Fig. N — Descripción. Crédito: Geisler, Muñoz et al. 2025.</div>
+   </div>
+   ── */
+.fig-wrap{margin:2rem 0;border-radius:10px;overflow:hidden;background:var(--surface);border:0.5px solid var(--border);}
+.fig-wrap img{width:40%;display:block;margin:0 auto;}
+.fig-caption{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--muted);padding:0.8rem 1rem;border-top:0.5px solid var(--border);line-height:1.5;}
+.fig-placeholder{background:var(--surface);border:0.5px dashed rgba(196,163,90,0.2);border-radius:10px;padding:3rem;text-align:center;margin:2rem 0;}
+.fig-placeholder p{font-family:'DM Mono',monospace;font-size:0.72rem;color:rgba(196,163,90,0.4);margin-bottom:4px;}
+.fig-placeholder small{font-family:'DM Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.15);}
+
+.highlight{background:var(--astro-dim);border:0.5px solid rgba(196,163,90,0.2);border-radius:10px;padding:1.2rem 1.5rem;margin:1.5rem 0;display:flex;flex-wrap:wrap;gap:1.5rem;}
+.highlight-item{text-align:center;}
+.highlight-num{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent-astro);display:block;}
+.highlight-lbl{font-size:0.75rem;color:var(--muted);}
+
+.cluster-table{width:100%;border-collapse:collapse;font-size:0.82rem;margin:1.5rem 0;}
+.cluster-table th{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);padding:0.6rem 0.8rem;border-bottom:0.5px solid var(--border);text-align:left;}
+.cluster-table td{padding:0.65rem 0.8rem;border-bottom:0.5px solid rgba(255,255,255,0.04);color:var(--muted);vertical-align:middle;}
+.cluster-table tr:hover td{background:var(--surface);color:var(--text);}
+.cluster-table a{color:var(--accent-astro);text-decoration:none;}
+.cluster-table a:hover{text-decoration:underline;}
+.cluster-name{font-weight:500;color:var(--text);}
+.sdss4{font-family:'DM Mono',monospace;font-size:0.62rem;padding:2px 6px;border-radius:3px;background:rgba(196,163,90,0.15);color:var(--accent-astro);border:0.5px solid rgba(196,163,90,0.2);}
+
+.paper-card{background:var(--surface);border:0.5px solid var(--border);border-left:2px solid var(--accent-astro);border-radius:0 10px 10px 0;padding:1.2rem 1.4rem;margin-bottom:8px;transition:background 0.15s;text-decoration:none;display:block;}
+.paper-card:hover{background:var(--surface2);}
+.paper-card.coauthor{border-left-color:rgba(196,163,90,0.3);}
+.paper-title{font-size:0.92rem;font-weight:500;color:var(--text);line-height:1.45;margin-bottom:4px;}
+.paper-card.coauthor .paper-title{color:var(--muted);}
+.paper-meta{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--muted);}
+.jbadge{display:inline-block;font-family:'DM Mono',monospace;font-size:0.63rem;padding:2px 7px;border-radius:4px;background:var(--astro-dim);color:var(--accent-astro);border:0.5px solid rgba(196,163,90,0.2);margin-left:8px;vertical-align:middle;}
+.note{background:var(--surface);border:0.5px solid rgba(196,163,90,0.15);border-radius:10px;padding:1rem 1.2rem;font-size:0.85rem;color:var(--muted);line-height:1.7;margin:1.5rem 0;}
+.note strong{color:var(--accent-astro);font-weight:500;}
+.fade-in{opacity:0;transform:translateY(14px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);border-top:0.5px solid var(--border);position:relative;z-index:1;}
+@media(max-width:600px){nav{padding:1rem 1.2rem;}.nav-links{display:none;}.page-hero{padding:7rem 1.2rem 2rem;}main{padding:0 1.2rem 4rem;}.stats{grid-template-columns:repeat(2,1fr);}.highlight{flex-direction:column;gap:1rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">César Muñoz</a>
+  <ul class="nav-links">
+    <li><a href="index.html#animacion">Animación</a></li>
+    <li><a href="index.html#data">Data Science</a></li>
+    <li><a href="index.html#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero fade-in">
+  <div class="hero-eyebrow">// galactic archaeology · bulge globular clusters · large surveys</div>
+  <!-- Logo — sube tu archivo y reemplaza "capos_logo.png" -->
+  <div style="display:flex;align-items:center;gap:2rem;margin-bottom:0.8rem;">
+    <h1>CAPOS<br><em style="color:var(--muted)">Bulge Cluster APOgee Survey</em></h1>
+    <img src="Capos_logo.png" alt="CAPOS logo" class="hero-logo" onerror="this.style.display='none'">
+  </div>
+  <p class="page-intro">
+    A large-scale spectroscopic survey targeting globular clusters in the Galactic bulge using APOGEE-2S at Las Campanas Observatory, Chile. I am one of the founding members of CAPOS, led by PI Douglas Geisler (Universidad de La Serena / Universidad de Concepción). The survey has produced the most comprehensive chemical and kinematic characterization of bulge globular clusters to date — analyzing 18 clusters and measuring abundances for 13 chemical elements.
+  </p>
+  <a class="paper-btn" href="https://www.aanda.org/articles/aa/full_html/2025/11/aa54923-25/aa54923-25.html" target="_blank">
+    → CAPOS VIII — Final results · A&A 2025
+  </a>
+</div>
+
+<div class="stats-wrap fade-in">
+  <div class="stats">
+    <div class="stat"><span class="stat-num">18</span><span class="stat-lbl">bulge GCs analyzed</span></div>
+    <div class="stat"><span class="stat-num">303</span><span class="stat-lbl">confirmed members S/N &gt; 70</span></div>
+    <div class="stat"><span class="stat-num">13</span><span class="stat-lbl">chemical elements</span></div>
+    <div class="stat"><span class="stat-num">9+</span><span class="stat-lbl">CAPOS papers published</span></div>
+  </div>
+</div>
+
+<main>
+
+  <!-- THE SCIENCE -->
+  <div class="section-header fade-in">
+    <span class="section-label">The science</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="fade-in">
+    <h2>Why do bulge globular clusters matter?</h2>
+    <p class="body-text">Globular clusters are among the oldest structures in the Universe — living fossils of the early Galaxy. The bulge, the dense central component of the Milky Way, formed first and fastest, making its globular clusters exceptional witnesses of the earliest epoch of galaxy formation. Yet for decades, these clusters remained poorly studied: dust extinction, crowding, and differential reddening made spectroscopic observation extremely challenging.</p>
+    <p class="body-text">CAPOS was designed precisely to overcome these barriers. By combining the near-infrared capabilities of APOGEE-2S with a systematic observational strategy, the survey has opened a new window onto the chemical and dynamical history of the Galactic bulge.</p>
+
+    <!-- Fig. 1 — Mapa de cúmulos. Sube como: capos_fig1_map.png -->
+    <div class="fig-wrap">
+      <img src="CAPOS_flds.jpg" alt="Map of CAPOS bulge globular clusters"
+        onerror="this.parentElement.innerHTML='<div class=\'fig-placeholder\'><p>[ Fig. 1 — Mapa de los 18 cúmulos en el bulbo galáctico ]</p><small>Sube el archivo como: capos_fig1_map.png</small></div>'">
+      <div class="fig-caption">Fig. 1 — Distribution of the 18 CAPOS bulge globular clusters on the sky. Credit: Geisler, Muñoz et al. 2025, A&A, 703, A267.</div>
+    </div>
+  </div>
+
+  <!-- OBSERVATIONS -->
+  <div class="section-header fade-in">
+    <span class="section-label">Observations & method</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="fade-in">
+    <h2>APOGEE-2S at Las Campanas Observatory</h2>
+    <p class="body-text">CAPOS uses APOGEE-2S, the southern hemisphere spectrograph of the Apache Point Observatory Galactic Evolution Experiment, mounted on the du Pont 2.5m telescope at Las Campanas Observatory in Chile. APOGEE operates in the near-infrared H-band (1.51–1.70 μm), allowing it to pierce through the dust that obscures the bulge at optical wavelengths.</p>
+    <p class="body-text">Member stars were selected through a five-step process: spatial location within the tidal radius, proper motion from Gaia DR3, radial velocity from ASPCAP, metallicity, and CMD position. Only stars with spectral S/N > 70 were used for chemical abundances.</p>
+
+    <div class="highlight">
+      <div class="highlight-item"><span class="highlight-num">0.05 dex</span><span class="highlight-lbl">metallicity precision</span></div>
+      <div class="highlight-item"><span class="highlight-num">0.06 dex</span><span class="highlight-lbl">[α/Fe] precision</span></div>
+      <div class="highlight-item"><span class="highlight-num">3.4 km/s</span><span class="highlight-lbl">radial velocity precision</span></div>
+      <div class="highlight-item"><span class="highlight-num">S/N &gt; 70</span><span class="highlight-lbl">spectral quality cut</span></div>
+    </div>
+  </div>
+
+  <!-- KEY RESULTS -->
+  <div class="section-header fade-in">
+    <span class="section-label">Key results</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="fade-in">
+    <h2>Multiple populations & chemical abundances</h2>
+    <p class="body-text">A key finding is that second-population stars, those with enhanced [N/Fe], show systematically higher [Fe/H] than first-population counterparts in the same cluster. This reflects known ASPCAP limitations with 2P atmospheric parameters, not real metallicity variations. To account for this, 2P metallicities were corrected using a best-fit linear relation before deriving cluster means. Abundances for 13 elements were then calculated using only first-population stars, with [Si/Fe] adopted as the best alpha-element proxy due to its insensitivity to multiple population effects.</p>
+
+    <!-- Fig. abundancias. Sube como: capos_fig_abundances.png -->
+    <p class="body-text">
+      The figure below shows [Si/Fe] versus [Fe/H] for the full sample of 163 clusters. CAPOS clusters appear as red stars. The key result: in situ and ex situ clusters show only a small and statistically insignificant difference in their mean [Si/Fe] abundances, challenging the theoretical expectation that clusters formed in shallower potential wells should show lower alpha-element ratios.
+    </p>
+    <div class="fig-wrap">
+      <img src="CAPOS_Varios_2025.png" alt="Chemical abundance patterns"
+        onerror="this.parentElement.innerHTML='<div class=\'fig-placeholder\'><p>[ Figura de abundancias químicas para los 18 cúmulos ]</p><small>Sube el archivo como: capos_fig_abundances.png</small></div>'">
+      <div class="fig-caption">Difference in [Fe/H], [Mg/Fe], [Si/Fe] and [Ca/Fe] from the first-population mean as a function of [N/Fe]. Second-population stars (high [N/Fe]) show systematic offsets in most elements except [Si/Fe], which remains well-behaved. Credit: Geisler, Muñoz et al. 2025, A&A, 703, A267.</div>
+    </div>
+
+    <h2 style="margin-top:2rem;">Bimodal metallicity distribution</h2>
+    <p class="body-text">The metallicity distribution of bulge globular clusters is strongly bimodal, with peaks near [Fe/H] = −0.45 and −1.1 dex. Notably, the metal-poor peak dominates, containing more than 70% of all BGCs. The entire in situ sample, including disk and bulge clusters, shows the same bimodality, while ex situ clusters accreted from external galaxies are unimodal with a peak around [Fe/H] = −1.6. Metallicity is thus a decent first-order predictor of GC origin: in situ clusters dominate above −1.2 dex, ex situ below −1.6 dex.</p>
+
+    <!-- Fig. metalicidades. Sube como: capos_fig_metallicity.png -->
+    <div class="fig-wrap">
+      <img src="combined_MDF_met.png" alt="Metallicity distribution"
+        onerror="this.parentElement.innerHTML='<div class=\'fig-placeholder\'><p>[ Figura de distribución de metalicidades ]</p><small>Sube el archivo como: capos_fig_metallicity.png</small></div>'">
+      <div class="fig-caption">Metallicity distribution of bulge globular clusters showing the bimodal structure. Credit: Geisler, Muñoz et al. 2025, A&A, 703, A267.</div>
+    </div>
+
+    <h2 style="margin-top:2rem;">Chemodynamical classification</h2>
+    <p class="body-text">CAPOS VIII introduced a quantitative chemodynamical classification scheme for all Galactic globular clusters, synthesizing five independent recent studies based on Gaia kinematics, orbital analysis, and chemistry. Of the 163 clusters examined, slightly more than half are classified as in situ. Forty of these are bonafide bulge globular clusters, consistent with other recent estimates. All but four of the CAPOS clusters are confirmed BGCs.</p>
+
+    <!-- Fig. clasificación. Sube como: capos_fig_classification.png -->
+    <div class="fig-wrap">
+      <img src="SivsFe_mass.png" alt="Chemodynamical classification"
+        onerror="this.parentElement.innerHTML='<div class=\'fig-placeholder\'><p>[ Figura de clasificación quimodinámica ]</p><small>Sube el archivo como: capos_fig_classification.png</small></div>'">
+      <div class="fig-caption">Mean [Si/Fe] vs [Fe/H] for all Galactic globular clusters. CAPOS clusters marked as red stars, bulge clusters as red circles, disk clusters as gray circles, and ex situ clusters as blue circles. Symbol size proportional to mass. Credit: Geisler, Muñoz et al. 2025, A&A, 703, A267.</div>
+    </div>
+  </div>
+
+  <!-- CLUSTER SAMPLE -->
+  <div class="section-header fade-in">
+    <span class="section-label">Cluster sample</span>
+    <div class="section-line"></div>
+  </div>
+  <div class="fade-in" style="overflow-x:auto;">
+    <table class="cluster-table">
+      <thead>
+        <tr><th>Cluster</th><th>Phase</th><th>CAPOS paper</th><th>Year</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="cluster-name">NGC 6304</td><td><span class="sdss4">SDSS-IV</span></td><td><a href="https://ui.adsabs.harvard.edu/#abs/2026A&A...706A.114M/abstract" target="_blank">CAPOS XI</a></td><td>2026</td></tr>
+        <tr><td class="cluster-name">Terzan 2</td><td><span class="sdss4">SDSS-IV</span></td><td><a href="https://ui.adsabs.harvard.edu/#abs/2025A&A...703A.278U/abstract" target="_blank">CAPOS IX</a></td><td>2025</td></tr>
+        <tr><td class="cluster-name">All 18 BGCs — Final results</td><td><span class="sdss4">SDSS-IV</span></td><td><a href="https://www.aanda.org/articles/aa/full_html/2025/11/aa54923-25/aa54923-25.html" target="_blank">CAPOS VIII</a></td><td>2025</td></tr>
+        <tr><td class="cluster-name">NGC 6316</td><td><span class="sdss4">SDSS-IV</span></td><td><a href="https://ui.adsabs.harvard.edu/#abs/2025A&A...701A.159F/abstract" target="_blank">CAPOS VII</a></td><td>2025</td></tr>
+        <tr><td class="cluster-name">NGC 6569</td><td><span class="sdss4">SDSS-IV</span></td><td><a href="https://ui.adsabs.harvard.edu/#abs/2023MNRAS.526.6274G/abstract" target="_blank">CAPOS VI</a></td><td>2023</td></tr>
+        <tr><td class="cluster-name">NGC 6558</td><td><span class="sdss4">SDSS-IV</span></td><td><a href="https://ui.adsabs.harvard.edu/#abs/2023A&A...680A..79M/abstract" target="_blank">CAPOS IV</a></td><td>2023</td></tr>
+        <tr><td class="cluster-name">Tonantzintla 2</td><td><span class="sdss4">SDSS-IV</span></td><td><a href="https://ui.adsabs.harvard.edu/#abs/2022A&A...658A.116F/abstract" target="_blank">CAPOS III</a></td><td>2022</td></tr>
+        <tr><td class="cluster-name">FSR 1758</td><td><span class="sdss4">SDSS-IV</span></td><td><a href="https://ui.adsabs.harvard.edu/#abs/2021A&A...652A.158R/abstract" target="_blank">CAPOS II</a></td><td>2021</td></tr>
+        <tr><td class="cluster-name">Overview — all initial clusters</td><td><span class="sdss4">SDSS-IV</span></td><td><a href="https://ui.adsabs.harvard.edu/#abs/2021A&A...652A.157G/abstract" target="_blank">CAPOS I</a></td><td>2021</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MY CONTRIBUTIONS -->
+  
+  
+
+  <div class="section-header fade-in" style="margin-top:2.5rem;">
+    <span class="section-label label-astro">CAPOS Publications</span>
+
+    <div class="section-line"></div>
+  </div>
+  <div class="fade-in">
+    <a class="paper-card" href="https://ui.adsabs.harvard.edu/#abs/2026A&A...706A.114M/abstract" target="_blank">
+      <div class="paper-title">CAPOS XI. NGC 6304<span class="jbadge">A&A 2026</span></div>
+      <div class="paper-meta">Montecinos, Geisler, Muñoz et al.</div>
+    </a>
+    <a class="paper-card" href="https://ui.adsabs.harvard.edu/#abs/2025A&A...703A.278U/abstract" target="_blank">
+      <div class="paper-title">CAPOS IX. Terzan 2<span class="jbadge">A&A 2025</span></div>
+      <div class="paper-meta">Uribe, Villanova, Geisler et al. · 2 citas</div>
+    </a>
+    <a class="paper-card" href="https://ui.adsabs.harvard.edu/#abs/2025A&A...701A.159F/abstract" target="_blank">
+      <div class="paper-title">CAPOS VII. NGC 6316<span class="jbadge">A&A 2025</span></div>
+      <div class="paper-meta">Frelijj, González-Díaz, Geisler et al. · 5 citas</div>
+    </a>
+    <a class="paper-card" href="https://ui.adsabs.harvard.edu/#abs/2023MNRAS.526.6274G/abstract" target="_blank">
+      <div class="paper-title">CAPOS VI. NGC 6569<span class="jbadge">MNRAS 2023</span></div>
+      <div class="paper-meta">Barrera, Villanova, Geisler et al. · 14 citas</div>
+    </a>
+    <a class="paper-card" href="https://ui.adsabs.harvard.edu/#abs/2022A&A...658A.116F/abstract" target="_blank">
+      <div class="paper-title">CAPOS III. Tonantzintla 2<span class="jbadge">A&A 2022</span></div>
+      <div class="paper-meta">Fernández-Trincado, Villanova, Geisler et al. · 20 citas</div>
+    </a>
+    <a class="paper-card" href="https://ui.adsabs.harvard.edu/#abs/2021A&A...652A.158R/abstract" target="_blank">
+      <div class="paper-title">CAPOS II. FSR 1758<span class="jbadge">A&A 2021</span></div>
+      <div class="paper-meta">Romero-Colmenares, Fernández-Trincado, Geisler et al. · 23 citas</div>
+    </a>
+    <a class="paper-card" href="https://ui.adsabs.harvard.edu/#abs/2021A&A...652A.157G/abstract" target="_blank">
+      <div class="paper-title">CAPOS I. Overview and initial ASPCAP results<span class="jbadge">A&A 2021</span></div>
+      <div class="paper-meta">Geisler, Villanova, O'Connell et al. · 38 citas</div>
+    </a>
+  </div>
+
+  <div class="note fade-in">
+    <strong>Full publication list</strong> available at
+    <a href="https://ui.adsabs.harvard.edu/public-libraries/0Xt44lMuSiG8o4RMMZ9i1A" target="_blank" style="color:var(--accent-astro);">NASA/ADS →</a>
+  </div>
+
+</main>
+
+<footer>César Muñoz González · CAPOS Survey · 2026</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -118,7 +118,7 @@ h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-
 .video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
 
 /* STATS */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2.5rem;}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2.5rem;}
 .stat{background:var(--surface);padding:1.4rem;text-align:center;}
 .stat-num{font-family:'DM Serif Display',serif;font-size:2rem;color:var(--accent-astro);display:block;line-height:1;margin-bottom:4px;}
 .stat-lbl{font-size:0.73rem;color:var(--muted);}
@@ -182,8 +182,9 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
   <span class="nav-name" id="nav-nombre"></span>
   <ul class="nav-links">
     <li><a href="#animacion">Animación</a></li>
-    <li><a href="#data">Data & Ciencia</a></li>
-    <li><a href="#tecnologia">Tecnología</a></li>
+    <li><a href="#data">Data Science</a></li>
+    <li><a href="#tecnologia">Tech & Lab</a></li>
+    <li><a href="scripts-3d.html">Scripts</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
 </nav>
@@ -234,12 +235,11 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
   <div>
     <div class="credit-title">Brave Cat</div>
     <div class="credit-role">Animador 3D de personajes</div>
-    <div class="credit-note">Primer largometraje de PunkRobot Studio, el estudio chileno ganador del Oscar por Bear Story (2015). Participé como parte del equipo de animadores de la película, dirigida por Gabriel Osorio con distribución internacional.</div>
+    <div class="credit-note">Primer largometraje de PunkRobot Studio, el estudio chileno ganador del Oscar por Bear Story (2015). Participé como parte del equipo de animadores de la película, dirigida por Gabriel Osorio con distribución internacional vía Indie Sales. El video a continuación es el trailer oficial de la película</div>
     <div class="video-wrap" style="margin-top:0.8rem;">
-      <iframe src="https://www.youtube.com/embed/VsYiM9Fcn1U?rel=0&modestbranding=1"
-        title="Brave Cat — Official Trailer"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
+      <video controls style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;">
+        <source src="BraveCat_Punkrobot.mp4#t=1.5" type="video/mp4">
+      </video>
     </div>
     <span class="credit-badge">PunkRobot Studio · 2025–2026</span>
   </div>
@@ -250,10 +250,10 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
   <div>
     <div class="credit-title">Mia & Codie</div>
     <div class="credit-role">Animador 3D de personajes</div>
-    <div class="credit-note">Serie de TV. Producción en Pajaro Studio / Relish Studios.</div>
+    <div class="credit-note">Serie de TV producida por Pajaro Studio en asociación con Relish Studios. Participé como parte del equipo de animadores de la serie.</div>
     <div class="video-wrap" style="margin-top:0.8rem;">
       <video controls style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;">
-        <source src="MiaCodie_cesar_ANIM.mp4" type="video/mp4">
+        <source src="MiaCodie_cesar_ANIM.mp4#t=0.3"   type="video/mp4">
       </video>
     </div>
     <span class="credit-badge">Pajaro Studio · Relish Studios</span>
@@ -265,7 +265,12 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
     <div>
       <div class="credit-title">Super Bowl LVIII — SpongeBob</div>
       <div class="credit-role">Animador 3D de personajes</div>
-      <div class="credit-note">Animación cartoon frame a frame de personajes de SpongeBob SquarePants. Layout, blocking y polishing.</div>
+      <div class="credit-note">Participé como parte del equipo de animadores en Baros Studio, en colaboración con Nickelodeon. Animación cartoon frame a frame de personajes de SpongeBob SquarePants, incluyendo layout, blocking y polishing.</div>
+      <div class="video-wrap" style="margin-top:0.8rem;">
+        <video controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;">
+          <source src="bob_superbowl.mp4" type="video/mp4">
+        </video>
+      </div>
       <span class="credit-badge">Baros Studio · Nickelodeon</span>
     </div>
     <div class="credit-year">2023–2024</div>
@@ -275,7 +280,12 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
     <div>
       <div class="credit-title">Star Wars: Visions Vol. 2 — "In the Stars"</div>
       <div class="credit-role">Animador 3D de personajes</div>
-      <div class="credit-note">Cortometraje de PunkRobot para Disney/Lucasfilm. Ganador del premio Best Commissioned Animation en los Quirino Awards. Estilos 24fps y 12fps stop-motion.</div>
+      <div class="credit-note">Participé como parte del equipo de animadores en PunkRobot Studio para Disney/Lucasfilm. Ganador del premio Best Commissioned Animation en los Quirino Awards. Estilo  stop-motion 12fps.</div>
+      <div class="video-wrap" style="margin-top:0.8rem;">
+        <video controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;">
+          <source src="Starwars Vision Cesar_r.mp4" type="video/mp4">
+        </video>
+      </div>
       <span class="credit-badge">PunkRobot · Disney/Lucasfilm</span>
     </div>
     <div class="credit-year">2022–2023</div>
@@ -285,7 +295,12 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
     <div>
       <div class="credit-title">WOW Lisa + Guitar and Drum</div>
       <div class="credit-role">Animador 3D de personajes</div>
-      <div class="credit-note">Dos series de TV en PunkRobot. WOW Lisa ganadora del premio Annie.</div>
+      <div class="credit-note">Participé como parte del equipo de animadores en PunkRobot Studio. Dos series de TV, WOW Lisa ganadora del premio Annie.</div>
+      <div class="video-wrap" style="margin-top:0.8rem;">
+        <video controls preload="metadata" style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:10px;">
+          <source src="WowLisaCesarR.mp4" type="video/mp4">
+        </video>
+      </div>  
       <span class="credit-badge">PunkRobot · Premio Annie</span>
     </div>
     <div class="credit-year">2022–2023</div>
@@ -293,55 +308,40 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
 
   <div class="credit">
     <div>
-      <div class="credit-title">Proyectos freelance</div>
-      <div class="credit-role">Animador 3D</div>
-      <div class="credit-note">Trabajos para Believe Studios (believe.tv) y Gecko Studio (geckoanimacion.com).</div>
-      <span class="credit-badge">Freelance</span>
+      <div class="credit-title">Spots publicitarios y proyectos freelance</div>
+      <div class="credit-role">Animador 3D de personajes</div>
+      <div class="credit-note">Participé como animador en diversos proyectos freelance y spots publicitarios para Believe Studios (believe.tv) y Gecko Studio (geckoanimacion.com), entre otros.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:0.8rem;">
+        <video controls preload="metadata" style="width:100%;border-radius:8px;">
+          <source src="BilsPapCesar_R.mp4" type="video/mp4">
+        </video>
+        <video controls preload="metadata" style="width:100%;border-radius:8px;">
+          <source src="PizzaCesar_R.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
     <div class="credit-year">—</div>
   </div>
 
-  <div class="sub-label">Formación</div>
-  <div class="two-col">
-    <div class="grid-item" style="flex-direction:column;align-items:flex-start;gap:4px;">
-      <strong style="color:var(--text);font-size:0.88rem;">Animation Mentor</strong>
-      <span style="font-size:0.75rem;">Advanced Character Animation Program · 2020–2022</span>
+
+
+
+
+  <div class="section-header" style="margin-top:2rem;margin-bottom:1rem;">
+    <span class="section-label label-tech">Scripts propios</span>
+    <div class="section-line"></div>
+  </div>
+  <a href="scripts-3d.html" style="text-decoration:none;display:block;">
+    <div class="credit" style="border-color:rgba(138,158,207,0.3);">
+      <div>
+        <div class="credit-title" style="color:var(--accent-tech);">⌘ Animation & Production Scripts</div>
+        <div class="credit-role" style="color:var(--muted);">Herramientas propias para producción</div>
+        <div class="credit-note">Scripts de Python y MEL para optimizar flujos de trabajo en Maya, Blender and Marvelous. Automatización de tareas repetitivas en pipeline de animación.</div>
+        <span class="credit-badge" style="background:var(--tech-dim);color:var(--accent-tech);border-color:rgba(138,158,207,0.2);">Ver scripts →</span>
+      </div>
+      <div class="credit-year">2026</div>
     </div>
-    <div class="grid-item" style="flex-direction:column;align-items:flex-start;gap:4px;">
-      <strong style="color:var(--text);font-size:0.88rem;">Animum 3D</strong>
-      <span style="font-size:0.75rem;">Animation & Modeling Workshop · Maya · 2019</span>
-    </div>
-  </div>
-
-  <div class="sub-label">Herramientas</div>
-  <div class="three-col">
-    <div class="grid-item">Autodesk Maya</div>
-    <div class="grid-item">AnimBot</div>
-    <div class="grid-item">Studio Library</div>
-    <div class="grid-item">MG-Picker</div>
-    <div class="grid-item">ShotGrid</div>
-    <div class="grid-item">Ftrack · Kitsu</div>
-    <div class="grid-item">PRISM Pipeline</div>
-    <div class="grid-item">Marvelous Designer</div>
-    <div class="grid-item">nHair</div>
-  </div>
-
-  <!-- ── Scripts propios — reemplaza cuando tengas el repo ── -->
-  <div class="sub-label">Scripts propios</div>
-  <div class="note">
-    <strong>En desarrollo.</strong> Repositorio de scripts para Maya orientados a pipeline de producción.
-    Próximamente en GitHub.
-    <!-- Cuando tengas el repo, reemplaza por:
-    Scripts para Maya. <a href="https://github.com/TU_USUARIO/TU_REPO" target="_blank" style="color:var(--accent-anim);">Ver en GitHub →</a>
-    -->
-  </div>
-
-  <div class="note astro-note" style="margin-top:8px;">
-    <strong>Lo que me diferencia.</strong>
-    Puedo simular dinámica de telas y cabello con fundamento matemático real. La física detrás de una simulación en Maya y la física detrás de una estrella son, en el fondo, las mismas ecuaciones.
-  </div>
-</div>
-</section>
+  </a>
 
 <!-- ============================================================
      SECCIÓN 2 — DATA & CIENCIA
@@ -350,61 +350,103 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
 <section id="data">
 <div class="fade-in">
   <div class="section-header">
-    <span class="section-label label-astro">Data & Ciencia</span>
+    <span class="section-label label-astro">Data Science</span>
     <div class="section-line"></div>
   </div>
-  <h2>Large-scale<br><em style="color:var(--muted)">data analysis</em></h2>
-  <p class="section-intro">
-    Trabajo con datasets de millones de estrellas provenientes de surveys internacionales — APOGEE, Gaia, Rubin — diseñando pipelines de reducción, análisis estadístico y visualización a gran escala. El dominio es astrofísica, pero las herramientas son las mismas que en cualquier problema de datos complejos.
-  </p>
+  <h2>Data<br><em style="color:var(--muted)">Science</em></h2>
+  <p style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:rgba(255,255,255,0.25);margin-top:-0.8rem;margin-bottom:1.5rem;font-style:italic;">Astronomy · Large Surveys</p>
 
-  <div class="stats">
-    <div class="stat">
-      <span class="stat-num" id="stat-papers"></span>
-      <span class="stat-lbl">publicaciones peer-reviewed</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num" id="stat-citas"></span>
-      <span class="stat-lbl">citas académicas</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num" id="stat-recientes"></span>
-      <span class="stat-lbl">papers 2021–2026</span>
-    </div>
+  <p class="section-intro">
+      Experiencia procesando millones de objetos en surveys internacionales como APOGEE, Gaia y Rubin. Pipelines de reducción, análisis estadístico y visualización de datos complejos a gran escala.
+
+  </p>
+    <div class="sub-label">Proyectos</div>
+  <!-- ── Agregar proyectos aquí ── -->
+  <a href="capos.html" style="text-decoration:none;display:block;margin-top:8px;">
+  <div class="project" style="border-left-color:var(--accent-astro);">
+    <div class="project-title" style="color:var(--accent-astro);">✦ CAPOS — Bulge Cluster APOgee Survey</div>
+    <div class="project-desc">Large-scale spectroscopic survey of 18 Galactic bulge globular clusters using APOGEE-2S. Co-founding member. 9+ papers, 303 confirmed members.</div>
   </div>
+</a>
+  <a href="scripts-data.html" style="text-decoration:none;display:block;margin-top:8px;">
+    <div class="project" style="border-left-color:var(--accent-astro);">
+      <div class="project-title" style="color:var(--accent-astro);">⌘ Data Science Scripts</div>
+      <div class="project-desc">Herramientas de Python para análisis espectroscópico y procesamiento de surveys astronómicos. Equivalent Width, membership classification y más.</div>
+    </div>
+  </a> 
+
+  <div class="project">
+    <div class="project-title">Pipelines espectroscópicos</div>
+    <div class="project-desc">Reducción y análisis automatizado de datos de VLT/FLAMES y Magellan/MIKE. Integración con MOOG y BACCHUS para abundancias químicas estelares.</div>
+  </div>
+  <div class="project">
+    <div class="project-title">Determinación de membresía estelar</div>
+    <div class="project-desc">Clasificación de miembros de cúmulos con datos de Gaia y surveys ground-based. Combinación de cinemática y química para selección robusta.</div>
+  </div>
+  <div class="project">
+    <div class="project-title">Repositorio de herramientas · en desarrollo</div>
+    <div class="project-desc">Scripts públicos para la comunidad: reducción de datos espectroscópicos, visualización y análisis estadístico.</div>
+  </div>
+
+  <div class="sub-label">Publicaciones</div>
+  <a href="https://ui.adsabs.harvard.edu/public-libraries/0Xt44lMuSiG8o4RMMZ9i1A" target="_blank" style="text-decoration:none;">
+    <div class="stats" style="cursor:pointer;">
+      <div class="stat">
+        <span class="stat-num" id="stat-papers"></span>
+        <span class="stat-lbl">publicaciones peer-reviewed</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-citas"></span>
+        <span class="stat-lbl">citas académicas</span>
+      </div>
+    </div>
+  </a>
+
 
   <div class="sub-label">Publicaciones destacadas</div>
   <div class="card-list">
-    <!-- ── Agregar / editar publicaciones aquí ── -->
+
+  <a href="https://ui.adsabs.harvard.edu/#abs/2025A&A...703A.267G/abstract" target="_blank" style="text-decoration:none;">
     <div class="card">
       <div class="card-top">
-        <div class="card-title">Chemical abundances in Magellanic Cloud periphery substructures<span class="jbadge">A&A 2023</span></div>
+        <div class="card-title">CAPOS: The bulge Cluster APOgee Survey: VIII. Final ASPCAP results for all clusters<span class="jbadge">A&A 2025</span></div>
+        <div class="card-meta">Geisler, Muñoz et al.</div>
+      </div>
+      <div class="card-desc">Resultados finales ASPCAP para todos los cúmulos del survey CAPOS.</div>
+    </div>
+  </a>
+
+  <a href="https://ui.adsabs.harvard.edu/#abs/2023A&A...680A..79M/abstract" target="_blank" style="text-decoration:none;">
+    <div class="card">
+      <div class="card-top">
+        <div class="card-title">Chemo-dynamical tagging in the outskirts: The origins of stellar substructures in the Magellanic Clouds<span class="jbadge">A&A 2023</span></div>
         <div class="card-meta">Muñoz et al.</div>
       </div>
-      <div class="card-desc">Primer análisis químico de subestructuras periféricas de las Nubes de Magallanes con APOGEE-2S.</div>
+      <div class="card-desc">Origen de subestructuras estelares en las Nubes de Magallanes. Co-autoría con Monachesi y Nidever.</div>
     </div>
+  </a>
+
+  <a href="https://ui.adsabs.harvard.edu/#abs/2021MNRAS.506.4676M/abstract" target="_blank" style="text-decoration:none;">
     <div class="card">
       <div class="card-top">
-        <div class="card-title">Kinematics of Magellanic Cloud substructures<span class="jbadge">ApJ 2022</span></div>
-        <div class="card-meta">Cheng et al.</div>
-      </div>
-      <div class="card-desc">Estudio cinemático complementario. Co-autoría con Prof. Gurtina Besla (U. Arizona).</div>
-    </div>
-    <div class="card">
-      <div class="card-top">
-        <div class="card-title">Caracterización química de NGC 6791<span class="jbadge prep">en prep.</span></div>
+        <div class="card-title">Intrinsic metallicity variation in the intermediate mass type II globular cluster NGC 1261<span class="jbadge">MNRAS 2021</span></div>
         <div class="card-meta">Muñoz et al.</div>
       </div>
-      <div class="card-desc">Manuscrito en preparación.</div>
+      <div class="card-desc">Variación intrínseca de metalicidad en NGC 1261. 11 citas.</div>
     </div>
+  </a>
+
+  <a href="https://ui.adsabs.harvard.edu/#abs/2018A&A...620A..96M/abstract" target="_blank" style="text-decoration:none;">
     <div class="card">
       <div class="card-top">
-        <div class="card-title">Extensión del survey CAPOS<span class="jbadge prep">en prep.</span></div>
+        <div class="card-title">Chemical analysis of NGC 6528: one of the most metal-rich bulge globular clusters<span class="jbadge">A&A 2018</span></div>
         <div class="card-meta">Muñoz et al.</div>
       </div>
-      <div class="card-desc">Manuscrito en preparación.</div>
+      <div class="card-desc">Análisis químico detallado de NGC 6528, uno de los cúmulos más ricos en metales del bulbo. 44 citas.</div>
     </div>
-  </div>
+  </a>
+
+</div>
 
   <a class="ext-link" id="ads-link" target="_blank">→ Lista completa en NASA/ADS</a>
 
@@ -428,6 +470,9 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
     <span class="tag">Gaia</span>
     <span class="tag">Rubin Observatory</span>
   </div>
+
+
+
 </div>
 </section>
 
@@ -438,47 +483,11 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
 <section id="tecnologia">
 <div class="fade-in">
   <div class="section-header">
-    <span class="section-label label-tech">Tecnología</span>
+    <span class="section-label label-tech">Tech & Lab</span>
     <div class="section-line"></div>
   </div>
-  <h2>Datos &<br><em style="color:var(--muted)">código</em></h2>
-  <p class="section-intro">
-    Python para análisis de grandes datasets, automatización de pipelines y visualización científica. Aplicable a análisis cuantitativo en industria, minería de datos y producción.
-  </p>
-
-  <div class="sub-label">Proyectos</div>
-  <!-- ── Agregar proyectos aquí ── -->
-  <div class="project">
-    <div class="project-title">Pipelines espectroscópicos</div>
-    <div class="project-desc">Reducción y análisis automatizado de datos de VLT/FLAMES y Magellan/MIKE. Integración con MOOG y BACCHUS para abundancias químicas estelares.</div>
-  </div>
-  <div class="project">
-    <div class="project-title">Determinación de membresía estelar</div>
-    <div class="project-desc">Clasificación de miembros de cúmulos con datos de Gaia y surveys ground-based. Combinación de cinemática y química para selección robusta.</div>
-  </div>
-  <div class="project">
-    <div class="project-title">Repositorio de herramientas · en desarrollo</div>
-    <div class="project-desc">Scripts públicos para la comunidad: reducción de datos espectroscópicos, visualización y análisis estadístico.</div>
-  </div>
-
-  <div class="sub-label">Stack</div>
-  <div class="tags">
-    <span class="tag">Python</span>
-    <span class="tag">NumPy · Pandas</span>
-    <span class="tag">Astropy</span>
-    <span class="tag">Matplotlib · Seaborn</span>
-    <span class="tag">Shell scripts</span>
-    <span class="tag">LaTeX</span>
-    <span class="tag">Git</span>
-    <span class="tag">Linux · Mac · Windows</span>
-  </div>
-
-  <div class="sub-label">Docencia</div>
-  <div class="tags">
-    <span class="tag">Taller de Investigación I — Doctorado UdeLS 2021–2025</span>
-    <span class="tag">Workshop de Astronomía — divulgación regional</span>
-    <span class="tag">Colegio San Nicolás 2016–2017</span>
-  </div>
+  <h2>Tech<br><em style="color:var(--muted)">&amp; Lab</em></h2>
+  
 </div>
 </section>
 
@@ -510,7 +519,6 @@ document.getElementById('hero-nombre').textContent    = CONFIG.nombre;
 document.getElementById('hero-tagline').textContent   = CONFIG.subtitulo;
 document.getElementById('stat-papers').textContent    = CONFIG.statPapers;
 document.getElementById('stat-citas').textContent     = CONFIG.statCitas;
-document.getElementById('stat-recientes').textContent = CONFIG.statRecientes;
 document.getElementById('ads-link').href              = CONFIG.nasaADS;
 document.getElementById('hero-reel-btn').href         = CONFIG.demoReel;
 document.getElementById('contact-email-anim').href    = 'mailto:' + CONFIG.email;
