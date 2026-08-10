@@ -103,12 +103,9 @@
 
 
       } else {
-        // Desktop style: el canvas se adapta al tamaño real de su contenedor
-        // (responsive), en vez de quedar fijo al tamaño de resolucion por defecto
-        // configurado en Player Settings. Esto evita que se recorte al embeberlo
-        // en un iframe/contenedor de otro tamaño (ej. proporciones distintas).
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+        canvas.style.width = "960px";
+        canvas.style.height = "600px";
       }
 
       document.querySelector("#unity-loading-bar").style.display = "block";
