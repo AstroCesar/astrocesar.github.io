@@ -81,7 +81,15 @@ h2{font-family:'EB Garamond',serif;font-size:clamp(1.4rem,3vw,1.9rem);font-weigh
 .fade-in{opacity:0;transform:translateY(14px);transition:opacity 0.5s ease,transform 0.5s ease;}
 .fade-in.visible{opacity:1;transform:translateY(0);}
 footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);border-top:0.5px solid var(--border);position:relative;z-index:1;}
-@media(max-width:600px){nav{padding:1rem 1.2rem;}.nav-links{gap:1rem;}.page-hero{padding:7rem 1.2rem 2rem;}main{padding:0 1.2rem 4rem;}}
+.hero-title-row{display:flex;align-items:center;gap:2rem;margin-bottom:0.8rem;}
+@media(max-width:600px){
+  nav{flex-direction:column;align-items:flex-start;gap:0.6rem;padding:1rem 1.2rem;}
+  .nav-links{flex-wrap:wrap;gap:0.5rem 1rem;}
+  .page-hero{padding:9.5rem 1.2rem 2rem;}
+  main{padding:0 1.2rem 4rem;}
+  .hero-title-row{flex-direction:column;align-items:flex-start;gap:1rem;}
+  .hero-logo{height:120px;}
+}
 </style>
 </head>
 <body>
@@ -99,7 +107,7 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
 <div class="page-hero fade-in">
   <div class="hero-eyebrow">galactic archaeology · bulge globular clusters · large surveys</div>
   <!-- Logo — sube tu archivo y reemplaza "capos_logo.png" -->
-  <div style="display:flex;align-items:center;gap:2rem;margin-bottom:0.8rem;">
+  <div class="hero-title-row">
     <h1>CAPOS<br><em style="color:var(--muted)">Bulge Cluster APOgee Survey</em></h1>
     <img src="Capos_logo.png" alt="CAPOS logo" class="hero-logo" onerror="this.style.display='none'">
   </div>
