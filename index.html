@@ -68,6 +68,7 @@ const CONFIG = {
   --tech-dim: rgba(107,90,58,0.10);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+img,iframe,video{max-width:100%;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;}
 
@@ -247,7 +248,7 @@ footer{text-align:center;padding:1.5rem;font-size:0.72rem;color:var(--muted);bor
     <p style="font-family:'EB Garamond',serif;font-style:italic;font-size:0.9rem;color:var(--muted);margin:1rem 0 6px;">Demo jugable — WASD · Shift+WASD para correr</p>
     <div style="border-radius:10px;overflow:hidden;margin-top:0.5rem;">
       <!--<iframe src="https://itch.io/embed-upload/18732620?color=333333" width="640" height="360" frameborder="0" allowfullscreen style="border-radius:10px;display:block;"></iframe>-->
-      <iframe src="https://astrocesar.github.io/unity-demo" width="640" height="400" frameborder="0" allowfullscreen scrolling="no" style="border-radius:10px;display:block;overflow:hidden;"></iframe>
+      <iframe src="https://astrocesar.github.io/unity-demo" frameborder="0" allowfullscreen scrolling="no" style="width:100%;max-width:640px;aspect-ratio:640/400;border-radius:10px;display:block;overflow:hidden;border:0;"></iframe>
 
     </div>
     <span class="credit-badge">Maya · Unity · WebGL</span>
