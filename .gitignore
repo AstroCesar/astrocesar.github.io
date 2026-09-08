@@ -1,0 +1,4 @@
+# Config/tooling for AI coding assistants — not part of the deployed site
+.claude/
+.agents/
+skills-lock.json
